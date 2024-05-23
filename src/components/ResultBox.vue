@@ -24,7 +24,6 @@
 </template>
 
 <script>
-// import BigMixtureItem from './BigMixtureItem'
 import ButtonItem from './shared/ButtonItem'
 import FlaskItem from './shared/FlaskItem'
 
@@ -43,7 +42,6 @@ export default {
     }
   },
   components: {
-    // BigMixtureItem,
     ButtonItem,
     FlaskItem
   }
