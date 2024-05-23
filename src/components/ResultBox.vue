@@ -17,7 +17,7 @@
       :size="4"
       :movement="-0.5"
       :font-size="1.5"
-      icon="fa-sync" 
+      icon="pi-sync" 
       style="margin-right: 10px"/>
 
     <button-item
@@ -25,7 +25,7 @@
       :size="4"
       :movement="-0.5"
       :font-size="1.5"
-      icon="fa-question"
+      icon="pi-question"
       style="margin-left: 10px"/>
 
     <!-- modal -->
@@ -44,7 +44,7 @@
       <template v-slot:footer>
         <button-item
         @click="hideModal"
-        icon="fa-thumbs-up"
+        icon="pi-thumbs-up"
         style="margin: 10px" />
       </template>
 
