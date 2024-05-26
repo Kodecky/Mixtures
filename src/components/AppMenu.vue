@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import { useRouter } from 'vue-router';
 import Menubar from 'primevue/menubar'
 
 export default {
