@@ -9,24 +9,27 @@
       <app-menu 
         class="menubar-style"/>
 
-      <!-- color mixin -->
-      <color-mixin />
+      <!-- router view -->
+      <router-view />
+
+      <!-- router view used instead of color mixin -->
+      <!-- <color-mixin /> -->
 
     </div>
   </div>
 </template>
 
 <script>
-import './styles/global.scss'
-import AppHeader from './components/AppHeader'
-import ColorMixin from './components/ColorMixin'
-import AppMenu from './components/AppMenu'
+import '@/styles/global.scss'
+import AppHeader from '@/components/AppHeader'
+// import ColorMixin from './components/ColorMixin'
+import AppMenu from '@/components/AppMenu'
 
 export default {
   name: 'App',
   components: {
     AppHeader,
-    ColorMixin,
+    // ColorMixin,
     AppMenu
   }
 }

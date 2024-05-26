@@ -1,10 +1,21 @@
 <template>
   <Menubar 
-    :model="items" />
+    :model="items" >
+    <template #item="{ item, props }">
+      <router-link v-if="item.to" :to="item.to" custom v-slot="{ href, navigate }">
+        <a v-ripple :href="href" v-bind="props.action" @click="navigate">
+          <span :class="item.icon" />
+          <span class="ml-2">{{ item.label }}</span>
+        </a>
+      </router-link>
+    </template>
+  </Menubar>
 </template>
 
 <script>
-import Menubar from 'primevue/menubar';
+import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
+import Menubar from 'primevue/menubar'
 
 export default {
   name: 'AppMenu',
@@ -15,27 +26,21 @@ export default {
     items: [
       {
         label: 'Home',
-        icon: 'pi pi-fw pi-home'
-        // command: () => { this.navigateTo('home') }
+        icon: 'pi pi-fw pi-home',
+        to: '/'
       },
       {
         label: 'Mixin',
-        icon: 'pi pi-fw pi-folder-open'
-        // command: () => { this.navigateTo('mixin') }
+        icon: 'pi pi-fw pi-filter',
+        to: '/mixin'
       },
       {
         label: 'About',
-        icon: 'pi pi-fw pi-id-card'
-        // command: () => { this.navigateTo('about') }
+        icon: 'pi pi-fw pi-info',
+        to: '/about'
       }
     ]
   })
-  // methods: {
-  //   navigateTo(route) {
-  //     // Add your navigation logic here
-  //     console.log('Navigating to:', route);
-  //   }
-  // }
 }
 </script>
 
