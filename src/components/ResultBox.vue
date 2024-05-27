@@ -12,13 +12,17 @@
       :color="mixtureEffectFill"
       style="margin: 3rem auto; "/>
 
+    <!-- rgb value -->
+    <p 
+      v-text="mixtureEffectFill" />
+
     <button-item
       @click="$emit('refresh')"
       :size="4"
       :movement="-0.5"
       :font-size="1.5"
-      icon="pi-sync" 
-      style="margin-right: 10px"/>
+      icon="pi-sync"
+      style="margin-right: 20px" />
 
     <button-item
       @click="showModal"
@@ -26,7 +30,16 @@
       :movement="-0.5"
       :font-size="1.5"
       icon="pi-question"
-      style="margin-left: 10px"/>
+      style="margin-right: 20px" />
+
+    <router-link
+      :to="colorLink" >
+      <button-item
+        :size="4"
+        :movement="-0.5"
+        :font-size="1.5"
+        icon="pi-share-alt" />
+    </router-link>
 
     <!-- modal -->
     <modal-item
@@ -75,6 +88,10 @@ export default {
     mixtureEffectFill () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
       return `rgb(${redCol}, ${greenCol}, ${blueCol})`
+    },
+    colorLink () {
+      const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
+      return `/color/${redCol}/${greenCol}/${blueCol}`
     }
   },
   // methods: {

@@ -1,7 +1,9 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/pages/HomePage.vue'
 import About from '@/pages/AboutPage.vue'
 import Mixin from '@/pages/MixinPage.vue'
+import Error from '@/pages/ErrorPage.vue'
+import Color from '@/pages/ColorPage.vue'
 
 const routes = [
   {
@@ -18,11 +20,21 @@ const routes = [
     path: '/mixin',
     name: 'Mixin',
     component: Mixin
+  },
+  {
+    path: '/:pathMAtch(.*)*',
+    name: 'Error',
+    component: Error
+  },
+  {
+    path: '/color/:red?/:green?/:blue?',
+    name: 'Color',
+    component: Color
   }
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 
