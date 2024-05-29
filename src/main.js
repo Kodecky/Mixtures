@@ -6,6 +6,7 @@ import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.min.css'
 import router from './router'
+import 'animate.css/animate.min.css'
 
 const app = createApp(App)
 app.use(router)

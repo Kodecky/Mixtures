@@ -10,10 +10,12 @@
         class="menubar-style"/>
 
       <!-- router view -->
-      <router-view />
-
-      <!-- router view used instead of color mixin -->
-      <!-- <color-mixin /> -->
+      <router-view v-slot="{ Component }">
+        <slide-fade-animation 
+          class="animate__faster" >
+          <component :is="Component"/>
+        </slide-fade-animation>
+      </router-view>
 
     </div>
   </div>
@@ -22,15 +24,15 @@
 <script>
 import '@/styles/global.scss'
 import AppHeader from '@/components/AppHeader'
-// import ColorMixin from './components/ColorMixin'
 import AppMenu from '@/components/AppMenu'
+import SlideFadeAnimation from '@/components/shared/SlideFadeAnimation'
 
 export default {
   name: 'App',
   components: {
     AppHeader,
-    // ColorMixin,
-    AppMenu
+    AppMenu,
+    SlideFadeAnimation
   }
 }
 </script>

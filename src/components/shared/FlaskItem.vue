@@ -1,12 +1,16 @@
 <template>
-  <div class="flask" :style="flaskStyle">
+  <div 
+    class="flask animate__animated animate__faster"
+    :class="{ 'animate__shakeY': isAnimated }"
+    :style="flaskStyle"
+    @animationend="isAnimated = false" >
 
     <!-- decrement btn -->
     <button-item
       v-if="buttonsVisible"
       class="flask__btn flask__btn--left"
       icon="pi-angle-down"
-      @click="$emit('decrement')" />
+      @click="handleClick('decrement')" />
 
     <div
       :class="fillClasses"
@@ -18,7 +22,7 @@
       class="flask__btn flask__btn--right"
       icon="pi-angle-up"
       :movement="-0.5"
-      @click="$emit('increment')" />
+      @click="handleClick('increment')" />
   </div>
 
 </template>
@@ -48,6 +52,11 @@ export default {
       default: true
     }
   },
+  data() {
+    return {
+      isAnimated: false
+    }
+  },
   computed: {
     flaskStyle () {
       return {
@@ -75,11 +84,20 @@ export default {
   },
   components: {
     ButtonItem
+  },
+  methods: {
+    handleClick(action) {
+      this.addAnim()
+      this.$emit(action)
+    },
+    addAnim () {
+      this.isAnimated = true
+    }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .flask {
   display: block;
   border: 10px solid #ddd;
@@ -97,18 +115,18 @@ export default {
     transition: .2s;
 
     &--red {
-      background-color: #ff7d3b;
-      background-image: linear-gradient(189deg, #ff7d3b 0%, #FF2525 74%);
+      background-color: $flask-light-red;
+      background-image: linear-gradient(189deg, $flask-light-red 0%, $flask-dark-red 74%);
     }
 
     &--green {
-      background-color: #2e561c;
-      background-image: linear-gradient(0deg, #2e561c 0%, #2AF598 100%);
+      background-color: $flask-dark-green;
+      background-image: linear-gradient(0deg, $flask-dark-green 0%, $flask-light-green 100%);
     }
 
     &--blue {
-      background-color: #25b6bf;
-      background-image: linear-gradient(183deg, #25b6bf 0%, #0070a2 100%);
+      background-color: $flask-dark-blue;
+      background-image: linear-gradient(183deg, $flask-dark-blue 0%, $flask-light-blue 100%);
     }
 
   }
@@ -138,6 +156,5 @@ export default {
       left: 1rem;
     }
   }
-
 }
 </style>

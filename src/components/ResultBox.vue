@@ -42,26 +42,29 @@
     </router-link>
 
     <!-- modal -->
-    <modal-item
-      v-if="modalVisible"
-      @cancel="modalVisible = false">
+    <fade-animation>
 
-      <template v-slot:header>
-        About the app
-      </template>
-      
-      <template v-slot:body>
-        Mix three colors to create the perfect one!
-      </template>
+      <modal-item
+        v-if="modalVisible"
+        @cancel="modalVisible = false">
 
-      <template v-slot:footer>
-        <button-item
-        @click="hideModal"
-        icon="pi-thumbs-up"
-        style="margin: 10px" />
-      </template>
+        <template v-slot:header>
+          About the app
+        </template>
+        
+        <template v-slot:body>
+          Mix three colors to create the perfect one!
+        </template>
 
-    </modal-item>
+        <template v-slot:footer>
+          <button-item
+          @click="hideModal"
+          icon="pi-thumbs-up"
+          style="margin: 10px" />
+        </template>
+
+      </modal-item>
+    </fade-animation>
 
 
   </div>
@@ -72,12 +75,10 @@ import ButtonItem from './shared/ButtonItem'
 import FlaskItem from './shared/FlaskItem'
 import ModalItem from './shared/ModalItem'
 import modalMixin from '../mixins/ModalMixin.js'
+import FadeAnimation from './shared/FadeAnimation'
 
 export default {
   name: 'ResultsBox',
-  // data: () => ({
-  //   modalVisible: false
-  // }),
   props: {
     mixtures: {
       type: Array,
@@ -94,16 +95,15 @@ export default {
       return `/color/${redCol}/${greenCol}/${blueCol}`
     }
   },
-  // methods: {
-  //   showModal () {
-  //     this.modalVisible = true
-  //   }
-  // },
   components: {
     ButtonItem,
     FlaskItem,
-    ModalItem
+    ModalItem,
+    FadeAnimation
   },
   mixins: [modalMixin]
 }
 </script>
+
+<style>
+</style>

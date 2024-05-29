@@ -3,7 +3,7 @@
     :model="items" >
     <template #item="{ item, props }">
       <router-link v-if="item.to" :to="item.to" custom v-slot="{ href, navigate }">
-        <a v-ripple :href="href" v-bind="props.action" @click="navigate">
+        <a :href="href" v-bind="props.action" @click="navigate">
           <span :class="item.icon" />
           <span class="ml-2">{{ item.label }}</span>
         </a>
@@ -43,13 +43,4 @@ export default {
 </script>
 
 <style>
-  /* .p-menubar {
-    display: flex;
-
-    ul {
-      display: flex;
-      width: 100%;
-      justify-content: space-evenly;
-    }
-  } */
 </style>

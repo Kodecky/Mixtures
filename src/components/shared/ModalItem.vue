@@ -4,7 +4,7 @@
 
       <header>
         <h1>
-          <slot name="header "/>
+          <slot name="header"/>
         </h1>
       </header>
 
@@ -59,16 +59,16 @@ export default {
     border-radius: 2rem;
     box-shadow: 0 0 20px 20px rgba(0,0,0,0.1);
     color: #637892;
+  }
+  
+  .modal-body {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
 
-    &__body {
-      font-size: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    &__footer {
-      button {
-        margin: 0.5rem;
-      }
+  .modal-footer {
+    button {
+      margin: 0.5rem;
     }
   }
 </style>
