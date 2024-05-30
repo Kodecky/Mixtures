@@ -7,8 +7,10 @@ import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.min.css'
 import router from './router'
 import 'animate.css/animate.min.css'
+import store from './store'
 
 const app = createApp(App)
 app.use(router)
 app.use(PrimeVue)
+app.use(store)
 app.mount('#app')

@@ -16,6 +16,9 @@
     <p 
       v-text="mixtureEffectFill" />
 
+    <p 
+      v-text="`There are ${this.$store.state.colors.length} colors in your pocket!`"/>
+
     <button-item
       @click="$emit('refresh')"
       :size="4"
@@ -38,8 +41,16 @@
         :size="4"
         :movement="-0.5"
         :font-size="1.5"
-        icon="pi-share-alt" />
+        icon="pi-share-alt"
+        style="margin-right: 20px;" />
     </router-link>
+
+    <button-item 
+      :size="4" 
+      :movement="-0.5"
+      :font-size="1.5"
+      icon="pi-pencil" 
+      @click="saveColor" />
 
     <!-- modal -->
     <fade-animation>
@@ -66,7 +77,6 @@
       </modal-item>
     </fade-animation>
 
-
   </div>
 </template>
 
@@ -76,6 +86,7 @@ import FlaskItem from './shared/FlaskItem'
 import ModalItem from './shared/ModalItem'
 import modalMixin from '../mixins/ModalMixin.js'
 import FadeAnimation from './shared/FadeAnimation'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'ResultsBox',
@@ -101,7 +112,29 @@ export default {
     ModalItem,
     FadeAnimation
   },
-  mixins: [modalMixin]
+  mixins: [modalMixin],
+  data() {
+    return {
+      isSaving: false
+    }
+  },
+  methods: {
+    ...mapMutations({ addColor: 'ADD_COLOR' }),
+    addColor (payload) {
+      this.$store.commit('ADD_COLOR', payload)
+    },
+    saveColor () {
+      if (this.isSaving) return
+      this.isSaving = true
+
+      const [red, green, blue] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
+      this.addColor({ red, green, blue })
+
+      setTimeout(() => {
+        this.isSaving = false
+      }, 1000)
+    }
+  }
 }
 </script>
 

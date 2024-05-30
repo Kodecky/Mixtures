@@ -16,6 +16,13 @@
       :class="fillClasses"
       :style="fillStyle" />
 
+    <!-- remove btn -->
+    <button-item
+      v-if="btnRemoveVisible"
+      class="flask__btn flask__btn--remove"
+      icon="pi-trash"
+      :movement="-0.5" />
+
     <!-- increment btn -->
     <button-item
       v-if="buttonsVisible"
@@ -50,6 +57,10 @@ export default {
     buttonsVisible: {
       type: Boolean,
       default: true
+    },
+    btnRemoveVisible: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -154,6 +165,11 @@ export default {
 
     &--left {
       left: 1rem;
+    }
+
+    &--remove {
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 }
