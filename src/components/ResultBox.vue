@@ -17,7 +17,7 @@
       v-text="mixtureEffectFill" />
 
     <p 
-      v-text="`There are ${this.$store.state.colors.length} colors in your pocket!`"/>
+      v-text="`There are ${amountColors} colors in your pocket!`"/>
 
     <button-item
       @click="$emit('refresh')"
@@ -86,7 +86,7 @@ import FlaskItem from './shared/FlaskItem'
 import ModalItem from './shared/ModalItem'
 import modalMixin from '../mixins/ModalMixin.js'
 import FadeAnimation from './shared/FadeAnimation'
-import { mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'ResultsBox',
@@ -104,7 +104,8 @@ export default {
     colorLink () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
       return `/color/${redCol}/${greenCol}/${blueCol}`
-    }
+    },
+    ...mapGetters([ 'amountColors' ])
   },
   components: {
     ButtonItem,

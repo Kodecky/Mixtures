@@ -3,10 +3,10 @@
     <flask-item
       :key="index"
       v-for="(color, index) in colors"
+      :color="color" 
       :buttons-visible="false"
       :btn-remove-visible="true"
       :amount="100"
-      :color="useColor(color)" 
       @click="removeColor(index)"/>
   </div>
 </template>
@@ -14,7 +14,7 @@
 <script>
 import FlaskItem from '@/components/shared/FlaskItem'
 import ButtonItem from './shared/ButtonItem'
-import { mapState } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'MyColorsList',
@@ -23,9 +23,9 @@ export default {
     ButtonItem
   },
   methods: {
-    useColor(color) {
-      return `rgb(${color.red}, ${color.green}, ${color.blue})`
-    },
+    // useColor(color) {
+    //   return `rgb(${color.red}, ${color.green}, ${color.blue})`
+    // },
     outAnimation (index) {
       this.isOutAnimation = true
     },
@@ -34,7 +34,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['colors'])
+    ...mapGetters({ colors: 'RGBColors' })
   }
 }
 </script>
