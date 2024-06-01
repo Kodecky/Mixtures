@@ -86,27 +86,10 @@ import FlaskItem from './shared/FlaskItem'
 import ModalItem from './shared/ModalItem'
 import modalMixin from '../mixins/ModalMixin.js'
 import FadeAnimation from './shared/FadeAnimation'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapState ,mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'ResultsBox',
-  props: {
-    mixtures: {
-      type: Array,
-      required: true
-    }
-  },
-  computed: {
-    mixtureEffectFill () {
-      const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
-      return `rgb(${redCol}, ${greenCol}, ${blueCol})`
-    },
-    colorLink () {
-      const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
-      return `/color/${redCol}/${greenCol}/${blueCol}`
-    },
-    ...mapGetters([ 'amountColors' ])
-  },
   components: {
     ButtonItem,
     FlaskItem,
@@ -119,8 +102,20 @@ export default {
       isSaving: false
     }
   },
+  computed: {
+    ...mapState([ 'mixtures' ]),
+    ...mapGetters([ 'amountColors' ]),
+    mixtureEffectFill () {
+      const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
+      return `rgb(${redCol}, ${greenCol}, ${blueCol})`
+    },
+    colorLink () {
+      const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
+      return `/color/${redCol}/${greenCol}/${blueCol}`
+    }
+  },
   methods: {
-    ...mapMutations({ addColor: 'ADD_COLOR' }),
+    ...mapActions(['addColor']),
     addColor (payload) {
       this.$store.commit('ADD_COLOR', payload)
     },

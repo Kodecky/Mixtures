@@ -23,9 +23,6 @@ export default {
     ButtonItem
   },
   methods: {
-    // useColor(color) {
-    //   return `rgb(${color.red}, ${color.green}, ${color.blue})`
-    // },
     outAnimation (index) {
       this.isOutAnimation = true
     },
